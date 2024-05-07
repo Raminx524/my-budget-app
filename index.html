@@ -1,11 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Available Budget in</h1>
+        <div class="currentBalance"></div>
+        <div class="income">INCOME</div>
+        <div class="expenses">
+          EXPENSES
+          <span id="percentages">-</span>
+        </div>
+      </div>
+      <div class="userInputsContainer">
+        <select id="valueOperation">
+          <option value="-">-</option>
+          <option value="+">+</option>
+        </select>
+        <input type="text" id="descInput" placeholder="Add Description" />
+        <input type="text" id="valInput" placeholder="Value" />
+        <i class="fa-regular fa-circle-check"></i>
+      </div>
+      <div></div>
+    </div>
+  </body>
 </html>
