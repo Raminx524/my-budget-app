@@ -2,18 +2,28 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="container">
       <div class="header">
         <h1>Available Budget in</h1>
         <div class="currentBalance"></div>
-        <div class="income">INCOME</div>
-        <div class="expenses">
-          EXPENSES
-          <span id="percentages">-</span>
+        <div id="income" class="headerTransactionsContainer">
+          <h2>INCOME</h2>
+          <div id="sumDisplayIncomes"></div>
+        </div>
+        <div id="expenses" class="headerTransactionsContainer">
+          <h2>EXPENSES</h2>
+          <div class="valueDisplay">
+          <div id="sumDisplayExpenses"></div><span id="percentages">-</span>
+        </div>
         </div>
       </div>
       <div class="userInputsContainer">
@@ -21,11 +31,22 @@
           <option value="-">-</option>
           <option value="+">+</option>
         </select>
-        <input type="text" id="descInput" placeholder="Add Description" />
+        <input type="text" id="descInput" placeholder="Add Description"/>
         <input type="text" id="valInput" placeholder="Value" />
         <i class="fa-regular fa-circle-check"></i>
+        <div id="errorDisplay"></div>
       </div>
-      <div></div>
+      <div id="transactionsHistoryContainer">
+        <div id="incomesHistory">
+          <h2>INCOME</h2>
+          <div id="dynamicIncomesContainer"></div>
+        </div>
+        <div id="expensesHistory">
+          <h2>EXPENSES</h2>
+          <div id="dynamicExpensesContainer"></div>
+        </div>
+      </div>
     </div>
+    <script src="main.js"></script>
   </body>
 </html>

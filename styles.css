@@ -1,0 +1,69 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    width: 100vw;
+}
+
+img, canvas{
+    display: block;
+    max-width: 100%;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vh;
+}
+
+.headerTransactionsContainer{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.header{
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 1vh;
+}
+#income{
+    background-color: #32A5A0;
+}
+#expenses{
+    background-color: #F53237;
+}
+
+#incomesHistory{
+    color:#32A5A0;
+}
+#expensesHistory{
+    color: #F53237;
+}
+#transactionsHistoryContainer{
+    display: flex;
+    gap: 50vw;
+}
+.userInputsContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 9vh;
+    gap: 1vw;
+    background-color: #F5F0F5;
+    width: 100%;
+}
+#valueOperation{
+    height: 4.6vh;
+}
+.valueDisplay{
+    display:flex;
+    align-items: center;
+    gap:1vw;
+}
