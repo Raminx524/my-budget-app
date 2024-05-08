@@ -1,69 +1,149 @@
-*, *::before, *::after {
-    box-sizing: border-box;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-body{
-    margin: 0;
-    width: 100vw;
+body {
+  margin: 0;
+  width: 100vw;
 }
 
-img, canvas{
-    display: block;
-    max-width: 100%;
+img,
+canvas {
+  display: block;
+  max-width: 100%;
 }
 
-.container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1vh;
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.headerTransactionsContainer{
-    display:flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 50%;
+.headerTransactionsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 27%;
+  height: 18%;
+  padding-inline: 0.5vw;
 }
 
-.header{
-    display:flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-    gap: 1vh;
+.header {
+  background-image: linear-gradient(#606060, #000000),
+    url(./assets/header-bg.jfif);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 22em;
+  color: #e3e9ee;
+  background-blend-mode: soft-light;
+  font-family: "Open Sans", sans-serif;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  font-weight: 400;
+  gap: 2vh;
+  padding-bottom: 1em;
 }
-#income{
-    background-color: #32A5A0;
+#income {
+  background-color: #32a5a0;
 }
-#expenses{
-    background-color: #F53237;
+#expenses {
+  background-color: #f53237;
 }
 
-#incomesHistory{
-    color:#32A5A0;
+#incomesHistory {
+  color: #32a5a0;
 }
-#expensesHistory{
-    color: #F53237;
+#expensesHistory {
+  color: #f53237;
 }
-#transactionsHistoryContainer{
-    display: flex;
-    gap: 50vw;
+#transactionsHistoryContainer {
+  display: flex;
+  gap: 3vw;
 }
-.userInputsContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 9vh;
-    gap: 1vw;
-    background-color: #F5F0F5;
-    width: 100%;
+.userInputsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 9vh;
+  gap: 1vw;
+  background-color: #f5f0f5;
+  width: 100%;
 }
-#valueOperation{
-    height: 4.6vh;
+#valueOperation {
+  height: 2.5em;
 }
-.valueDisplay{
-    display:flex;
-    align-items: center;
-    gap:1vw;
+.valueDisplay {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+}
+h1 {
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
+.currentBalance {
+  font-size: 4.5rem;
+  padding-top: 0;
+  margin-bottom: 1vh;
+}
+
+h2 {
+  color: #0000008c;
+  font-size: medium;
+}
+
+span#percentages {
+  display: flex;
+  justify-content: center;
+  padding-inline: 5px;
+  align-items: center;
+  min-width: 2vw;
+  font-size: 70%;
+  background-color: #ffffff66;
+  height: 3.5vh;
+  border-radius: 5px;
+}
+
+input {
+  height: 2.5em;
+  border-radius: 5px;
+}
+
+.fa-circle-check {
+  font-size: x-large;
+  color: #f53237;
+}
+
+input#descInput {
+  border: 1px solid #f53237;
+}
+
+input#valInput {
+  border: 1px solid #dbdbdb;
+}
+
+.historyContainer {
+  width: 25vw;
+}
+.dynamicContainers {
+  display: flex;
+  flex-direction: column;
+}
+
+.historyItem {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: aliceblue;
+  border-block: 1px solid #000;
+}
+.wrapperHistoryItems {
+  display: flex;
+  width: 24%;
+  gap: 1vw;
+  align-items: center;
 }

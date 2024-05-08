@@ -6,7 +6,9 @@ firstRender();
 handleDateHeader();
 document.querySelector(".fa-circle-check").addEventListener("click", () => {
   const itemDescription = document.querySelector("#descInput").value;
-  const itemValue = +Number.parseFloat(document.querySelector("#valInput").value).toFixed(2);
+  const itemValue = +Number.parseFloat(
+    document.querySelector("#valInput").value
+  ).toFixed(2);
   const operator = document.querySelector("#valueOperation").value;
   const isValid = isInfoValid(itemDescription, itemValue);
   if (isValid) {
@@ -107,8 +109,12 @@ function createDOMHistoryItems(operator, expensesSum) {
     let index = 0;
     activeArrElems = incomeArr.map((itemObj) => {
       return `<div class="historyItem" id="incomeItem${index}">
-            <p>${itemObj.description}</p><div>+${formatPretty(itemObj.value)}</div>
-            <i class="fa-thin fa-circle-xmark" onclick="removeItem(${index++},'income')"></i>
+            <p>${
+              itemObj.description
+            }</p><div class="wrapperHistoryItems"><div>+${formatPretty(
+        itemObj.value
+      )}</div>
+            <i class="fa-thin fa-circle-xmark" onclick="removeItem(${index++},'income')"></i></div>
             </div>`;
     });
     document.querySelector("#dynamicIncomesContainer").innerHTML =
@@ -119,7 +125,9 @@ function createDOMHistoryItems(operator, expensesSum) {
       return `<div class="historyItem" id="expensesItem${index}">
             <p>${
               itemObj.description
-            }</p><div class="wrapperHistoryItems"><div>-${formatPretty(itemObj.value)}</div>
+            }</p><div class="wrapperHistoryItems"><div>-${formatPretty(
+        itemObj.value
+      )}</div>
             <span class="precentagesHistory">${Math.round(
               (itemObj.value / expensesSum) * 100
             )}%</span>
@@ -145,39 +153,42 @@ function removeFromCorrectArray(idStrParam, i) {
   }
 }
 
-function updateLocalStorage(KEY){
-    localStorage.setItem(KEY,JSON.stringify(KEY==="incomes"? incomeArr : expensesArr));
+function updateLocalStorage(KEY) {
+  localStorage.setItem(
+    KEY,
+    JSON.stringify(KEY === "incomes" ? incomeArr : expensesArr)
+  );
 }
 
-function intializeArrayFromLocalStorage(KEY){
-    if(localStorage.getItem(KEY)){
-        return JSON.parse(localStorage.getItem(KEY));
-    }
-    return [];
+function intializeArrayFromLocalStorage(KEY) {
+  if (localStorage.getItem(KEY)) {
+    return JSON.parse(localStorage.getItem(KEY));
+  }
+  return [];
 }
 
-function firstRender(){
-    if(incomeArr.length == 0 && expensesArr.length == 0){
-        document.querySelector("#sumDisplayIncomes").innerText = Number.parseFloat(0.00).toFixed(2);
-        document.querySelector("#sumDisplayExpenses").innerText = Number.parseFloat(0.00).toFixed(2);
-        document.querySelector(".currentBalance").innerText = Number.parseFloat(0.00).toFixed(2);
+function firstRender() {
+  if (incomeArr.length == 0 && expensesArr.length == 0) {
+    document.querySelector("#sumDisplayIncomes").innerText =
+      Number.parseFloat(0.0).toFixed(2);
+    document.querySelector("#sumDisplayExpenses").innerText =
+      Number.parseFloat(0.0).toFixed(2);
+    document.querySelector(".currentBalance").innerText =
+      Number.parseFloat(0.0).toFixed(2);
+  } else {
+    if (incomeArr.length == 0) {
+      const transactionsSums = calcSums();
+      createDOMHistoryItems("-", transactionsSums[1]);
+      renderInfo(0, transactionsSums[1]);
+    } else if (expensesArr.length == 0) {
+      const transactionsSums = calcSums();
+      createDOMHistoryItems("+", 0);
+      renderInfo(transactionsSums[0], 0);
+    } else {
+      const transactionsSums = calcSums();
+      createDOMHistoryItems("+", transactionsSums[1]);
+      createDOMHistoryItems("-", transactionsSums[1]);
+      renderInfo(...transactionsSums);
     }
-    else{
-        if(incomeArr.length == 0){
-            const transactionsSums = calcSums();
-            createDOMHistoryItems("-", transactionsSums[1]);
-            renderInfo(0,transactionsSums[1]);
-        }
-        else if(expensesArr.length == 0){
-            const transactionsSums = calcSums();
-            createDOMHistoryItems("+", 0);
-            renderInfo(transactionsSums[0], 0);
-        }
-        else{
-            const transactionsSums = calcSums();
-            createDOMHistoryItems("+", transactionsSums[1]);
-            createDOMHistoryItems("-", transactionsSums[1]);
-            renderInfo(...transactionsSums);
-        }
-    }
+  }
 }

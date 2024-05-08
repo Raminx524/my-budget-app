@@ -8,6 +8,10 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -22,28 +26,29 @@
         <div id="expenses" class="headerTransactionsContainer">
           <h2>EXPENSES</h2>
           <div class="valueDisplay">
-          <div id="sumDisplayExpenses"></div><span id="percentages">-</span>
-        </div>
+            <div id="sumDisplayExpenses"></div>
+            <span id="percentages">-</span>
+          </div>
         </div>
       </div>
       <div class="userInputsContainer">
         <select id="valueOperation">
-          <option value="-">-</option>
-          <option value="+">+</option>
+          <option id="minusOpt" value="-">-</option>
+          <option value="+" id="plusOpt">+</option>
         </select>
-        <input type="text" id="descInput" placeholder="Add Description"/>
-        <input type="number" id="valInput" placeholder="Value" min="1"/>
+        <input type="text" id="descInput" placeholder="Add Description" />
+        <input type="number" id="valInput" placeholder="Value" min="1" />
         <i class="fa-regular fa-circle-check"></i>
         <div id="errorDisplay"></div>
       </div>
       <div id="transactionsHistoryContainer">
-        <div id="incomesHistory">
+        <div id="incomesHistory" class="historyContainer">
           <h2>INCOME</h2>
-          <div id="dynamicIncomesContainer"></div>
+          <div id="dynamicIncomesContainer" class="dynamicContainers"></div>
         </div>
-        <div id="expensesHistory">
+        <div id="expensesHistory" class="historyContainer">
           <h2>EXPENSES</h2>
-          <div id="dynamicExpensesContainer"></div>
+          <div id="dynamicExpensesContainer" class="dynamicContainers"></div>
         </div>
       </div>
     </div>
