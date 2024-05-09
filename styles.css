@@ -1,16 +1,14 @@
-*,
-*::before,
-*::after {
+*, ::before, ::after {
   box-sizing: border-box;
 }
 
 body {
-  margin: 0;
+  margin: 0px;
   width: 100vw;
+  overflow-x: hidden;
 }
 
-img,
-canvas {
+img, canvas {
   display: block;
   max-width: 100%;
 }
@@ -26,17 +24,16 @@ canvas {
   align-items: center;
   justify-content: space-between;
   width: 27%;
+  min-width: 25em;
   height: 18%;
-  padding-inline: 0.5vw;
-}
+  padding-inline: 0.5vw; }
 
 .header {
-  background-image: linear-gradient(#606060, #000000),
-    url(./assets/header-bg.jfif);
+  background-image: linear-gradient(rgb(96, 96, 96), rgb(0, 0, 0)), url("./assets/header-bg.jfif");
   background-repeat: no-repeat;
   background-size: cover;
   height: 22em;
-  color: #e3e9ee;
+  color: rgb(227, 233, 238);
   background-blend-mode: soft-light;
   font-family: "Open Sans", sans-serif;
   display: flex;
@@ -47,89 +44,106 @@ canvas {
   gap: 2vh;
   padding-bottom: 1em;
 }
+
 #income {
-  background-color: #32a5a0;
+  background-color: rgb(50, 165, 160);
 }
+
 #expenses {
-  background-color: #f53237;
+  background-color: rgb(245, 50, 55);
 }
 
 #incomesHistory {
-  color: #32a5a0;
+  color: rgb(50, 165, 160);
 }
+
 #expensesHistory {
-  color: #f53237;
+  color: rgb(245, 50, 55);
 }
+
 #transactionsHistoryContainer {
   display: flex;
   gap: 3vw;
+  font-family: "Open Sans", sans-serif;
+  margin-top: 2em;
 }
+
 .userInputsContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 9vh;
+  height: 4em;
   gap: 1vw;
-  background-color: #f5f0f5;
+  background-color: rgb(245, 240, 245);
   width: 100%;
 }
+
 #valueOperation {
-  height: 2.5em;
+  width: 3%;
+  height: 3em;
+  min-width: 3em;
 }
+
 .valueDisplay {
   display: flex;
   align-items: center;
   gap: 1vw;
 }
+
 h1 {
   font-weight: 400;
-  margin-bottom: 0;
+  margin-bottom: 0px;
 }
 
 .currentBalance {
   font-size: 4.5rem;
-  padding-top: 0;
+  padding-top: 0px;
   margin-bottom: 1vh;
 }
 
-h2 {
-  color: #0000008c;
+.header h2 {
+  color: rgba(0, 0, 0, 0.55);
   font-size: medium;
 }
 
 span#percentages {
   display: flex;
   justify-content: center;
-  padding-inline: 5px;
-  align-items: center;
+  padding-inline: 5px; align-items: center;
   min-width: 2vw;
   font-size: 70%;
-  background-color: #ffffff66;
+  background-color: rgba(255, 255, 255, 0.4);
   height: 3.5vh;
   border-radius: 5px;
 }
 
 input {
-  height: 2.5em;
+  height: 3em;
   border-radius: 5px;
+  min-width: 6em;
+  padding-left: 8px;
 }
 
 .fa-circle-check {
   font-size: x-large;
-  color: #f53237;
+  color: rgb(245, 50, 55);
 }
 
 input#descInput {
-  border: 1px solid #f53237;
+  border: 1px solid rgb(245, 50, 55);
+  width: 25%;
 }
 
 input#valInput {
-  border: 1px solid #dbdbdb;
+  border: 1px solid rgb(219, 219, 219);
+  width: 6%;
 }
 
 .historyContainer {
   width: 25vw;
+  min-width: 215px;
 }
+
 .dynamicContainers {
   display: flex;
   flex-direction: column;
@@ -137,13 +151,55 @@ input#valInput {
 
 .historyItem {
   display: flex;
-  justify-content: space-evenly;
-  background-color: aliceblue;
-  border-block: 1px solid #000;
+  overflow: hidden;
+  justify-content: space-between;
+  border-top: 1px solid rgb(221, 221, 221);
+  padding-left: 8px;
 }
-.wrapperHistoryItems {
+
+.historyItemValuesContainer {
+  min-width: 10em;
+  justify-content: flex-end;
   display: flex;
-  width: 24%;
   gap: 1vw;
   align-items: center;
+  position: relative;
+  left: 1.1em;
+  transition: all 0.3s ease 0s;
+}
+
+.historyItem:hover {
+  & .historyItemValuesContainer {
+      left: 0px;
+      transition: all 0.3s ease 0s;
+      padding-right: 8px;
+  }
+}
+
+#incomesHistory h2, #expensesHistory h2 {
+  font-weight: 400;
+  font-size: large;
+}
+
+.historyItem p {
+  color: rgb(0, 0, 0);
+  overflow-wrap: normal;
+  max-width: 14em;
+}
+
+.historyItem:last-child {
+  border-bottom: 1px solid rgb(221, 221, 221);
+}
+
+.fa-circle-xmark {
+  cursor: pointer;
+  margin-left: 0px;
+}
+
+.historyItem:nth-child(2n+1) {
+  background-color: rgb(255, 255, 255);
+}
+
+.historyItem:nth-child(2n) {
+  background-color: rgb(245, 245, 245);
 }

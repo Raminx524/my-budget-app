@@ -1,7 +1,7 @@
 const exKEY = "expenses";
 const inKEY = "incomes";
-const incomeArr = intializeArrayFromLocalStorage(inKEY);
-const expensesArr = intializeArrayFromLocalStorage(exKEY);
+const incomeArr = initializeArrayFromLocalStorage(inKEY);
+const expensesArr = initializeArrayFromLocalStorage(exKEY);
 firstRender();
 handleDateHeader();
 document.querySelector(".fa-circle-check").addEventListener("click", () => {
@@ -108,13 +108,13 @@ function createDOMHistoryItems(operator, expensesSum) {
   if (operator === "+") {
     let index = 0;
     activeArrElems = incomeArr.map((itemObj) => {
-      return `<div class="historyItem" id="incomeItem${index}">
+      return `<div class="historyItem incomeHistoryItems" id="incomeItem${index}">
             <p>${
               itemObj.description
-            }</p><div class="wrapperHistoryItems"><div>+${formatPretty(
+            }</p><div class="historyItemValuesContainer"><div>+${formatPretty(
         itemObj.value
       )}</div>
-            <i class="fa-thin fa-circle-xmark" onclick="removeItem(${index++},'income')"></i></div>
+            <i class="fa-regular fa-circle-xmark xMark" onclick="removeItem(${index++},'income')"></i></div>
             </div>`;
     });
     document.querySelector("#dynamicIncomesContainer").innerHTML =
@@ -122,16 +122,16 @@ function createDOMHistoryItems(operator, expensesSum) {
   } else {
     let index = 0;
     activeArrElems = expensesArr.map((itemObj) => {
-      return `<div class="historyItem" id="expensesItem${index}">
+      return `<div class="historyItem expensesHistoryItems" id="expensesItem${index}">
             <p>${
               itemObj.description
-            }</p><div class="wrapperHistoryItems"><div>-${formatPretty(
+            }</p><div class="historyItemValuesContainer"><div>-${formatPretty(
         itemObj.value
       )}</div>
             <span class="precentagesHistory">${Math.round(
               (itemObj.value / expensesSum) * 100
             )}%</span>
-            <i class= "fa-light fa-circle-xmark" onclick="removeItem(${index++},'expenses')"></i></div></div>`;
+            <i class= "fa-regular fa-circle-xmark xMark" onclick="removeItem(${index++},'expenses')"></i></div></div>`;
     });
     document.querySelector("#dynamicExpensesContainer").innerHTML =
       activeArrElems.join("");
@@ -141,6 +141,8 @@ function createDOMHistoryItems(operator, expensesSum) {
 function removeItem(index, idStr) {
   document.querySelector(`#${idStr}Item${index}`).remove();
   removeFromCorrectArray(idStr, index);
+  const transactionsSums = calcSums();
+  renderInfo(...transactionsSums);
 }
 
 function removeFromCorrectArray(idStrParam, i) {
@@ -160,7 +162,7 @@ function updateLocalStorage(KEY) {
   );
 }
 
-function intializeArrayFromLocalStorage(KEY) {
+function initializeArrayFromLocalStorage(KEY) {
   if (localStorage.getItem(KEY)) {
     return JSON.parse(localStorage.getItem(KEY));
   }
@@ -190,5 +192,15 @@ function firstRender() {
       createDOMHistoryItems("-", transactionsSums[1]);
       renderInfo(...transactionsSums);
     }
+  }
+}
+
+function changeInputStyleBasedOnOperator(elem) {
+  if (elem.value === "+") {
+    document.querySelector("#descInput").style.border = `1px solid #32a5a0`;
+    document.querySelector(".fa-circle-check").style.color = "#32a5a0";
+  } else {
+    document.querySelector("#descInput").style.border = `1px solid #f53237`;
+    document.querySelector(".fa-circle-check").style.color = "#f53237";
   }
 }
