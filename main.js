@@ -76,9 +76,9 @@ function renderInfo(income, expenses) {
 
 function formatPretty(result) {
   if (result % 1 == 0) {
-    return result <= 0 ? `${result}.00` : `${result}.00`;
+    return result <= 0 ? `${result.toLocaleString()}.00` : `${result.toLocaleString()}.00`;
   }
-  return +Number.parseFloat(result).toFixed(2);
+  return +Number.parseFloat(result.toLocaleString()).toFixed(2);
 }
 
 function handleDateHeader() {
