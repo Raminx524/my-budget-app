@@ -24,9 +24,10 @@ img, canvas {
   align-items: center;
   justify-content: space-between;
   width: 27%;
-  min-width: 25em;
+  min-width: 350px;
   height: 18%;
-  padding-inline: 0.5vw; }
+  padding-inline: 0.5vw;
+  }
 
 .header {
   background-image: linear-gradient(rgb(96, 96, 96), rgb(0, 0, 0)), url("./assets/header-bg.jfif");
@@ -41,7 +42,7 @@ img, canvas {
   width: 100%;
   align-items: center;
   font-weight: 400;
-  gap: 2vh;
+  gap: 0.6em;
   padding-bottom: 1em;
 }
 
@@ -82,6 +83,7 @@ img, canvas {
   width: 3%;
   height: 3em;
   min-width: 3em;
+  font-weight: 900;
 }
 
 .valueDisplay {
@@ -202,4 +204,12 @@ input#valInput {
 
 .historyItem:nth-child(2n) {
   background-color: rgb(245, 245, 245);
+}
+@media (max-width: 450px){
+  #transactionsHistoryContainer{
+    flex-direction: column;
+  }
+  h1{
+    text-align: center;
+  }
 }
