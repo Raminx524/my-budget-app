@@ -1,4 +1,6 @@
-*, ::before, ::after {
+*,
+::before,
+::after {
   box-sizing: border-box;
 }
 
@@ -8,7 +10,8 @@ body {
   overflow-x: hidden;
 }
 
-img, canvas {
+img,
+canvas {
   display: block;
   max-width: 100%;
 }
@@ -27,10 +30,11 @@ img, canvas {
   min-width: 350px;
   height: 18%;
   padding-inline: 0.5vw;
-  }
+}
 
 .header {
-  background-image: linear-gradient(rgb(96, 96, 96), rgb(0, 0, 0)), url("./assets/header-bg.jfif");
+  background-image: linear-gradient(rgb(96, 96, 96), rgb(0, 0, 0)),
+    url("./assets/header-bg.jfif");
   background-repeat: no-repeat;
   background-size: cover;
   height: 22em;
@@ -84,6 +88,8 @@ img, canvas {
   height: 3em;
   min-width: 3em;
   font-weight: 900;
+  border: 1px solid rgb(219, 219, 219);
+  border-radius: 5px;
 }
 
 .valueDisplay {
@@ -111,7 +117,8 @@ h1 {
 span#percentages {
   display: flex;
   justify-content: center;
-  padding-inline: 5px; align-items: center;
+  padding-inline: 5px;
+  align-items: center;
   min-width: 2vw;
   font-size: 70%;
   background-color: rgba(255, 255, 255, 0.4);
@@ -124,6 +131,8 @@ input {
   border-radius: 5px;
   min-width: 6em;
   padding-left: 8px;
+  outline-color: rgb(245, 50, 55);
+  border: 1px solid rgb(219, 219, 219);
 }
 
 .fa-circle-check {
@@ -132,12 +141,10 @@ input {
 }
 
 input#descInput {
-  border: 1px solid rgb(245, 50, 55);
   width: 25%;
 }
 
 input#valInput {
-  border: 1px solid rgb(219, 219, 219);
   width: 6%;
 }
 
@@ -172,13 +179,14 @@ input#valInput {
 
 .historyItem:hover {
   & .historyItemValuesContainer {
-      left: 0px;
-      transition: all 0.3s ease 0s;
-      padding-right: 8px;
+    left: 0px;
+    transition: all 0.3s ease 0s;
+    padding-right: 8px;
   }
 }
 
-#incomesHistory h2, #expensesHistory h2 {
+#incomesHistory h2,
+#expensesHistory h2 {
   font-weight: 400;
   font-size: large;
 }
@@ -198,18 +206,18 @@ input#valInput {
   margin-left: 0px;
 }
 
-.historyItem:nth-child(2n+1) {
+.historyItem:nth-child(2n + 1) {
   background-color: rgb(255, 255, 255);
 }
 
 .historyItem:nth-child(2n) {
   background-color: rgb(245, 245, 245);
 }
-@media (max-width: 450px){
-  #transactionsHistoryContainer{
+@media (max-width: 450px) {
+  #transactionsHistoryContainer {
     flex-direction: column;
   }
-  h1{
+  h1 {
     text-align: center;
   }
 }

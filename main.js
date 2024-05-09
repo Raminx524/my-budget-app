@@ -76,7 +76,9 @@ function renderInfo(income, expenses) {
 
 function formatPretty(result) {
   if (result % 1 == 0) {
-    return result <= 0 ? `${result.toLocaleString()}.00` : `${result.toLocaleString()}.00`;
+    return result <= 0
+      ? `${result.toLocaleString()}.00`
+      : `${result.toLocaleString()}.00`;
   }
   return +Number.parseFloat(result.toLocaleString()).toFixed(2);
 }
@@ -196,11 +198,9 @@ function firstRender() {
 }
 
 function changeInputStyleBasedOnOperator(elem) {
-  if (elem.value === "+") {
-    document.querySelector("#descInput").style.border = `1px solid #32a5a0`;
-    document.querySelector(".fa-circle-check").style.color = "#32a5a0";
-  } else {
-    document.querySelector("#descInput").style.border = `1px solid #f53237`;
-    document.querySelector(".fa-circle-check").style.color = "#f53237";
-  }
+  let color = elem.value === "+" ? "#32a5a0" : "#f53237";
+  document.querySelector("#descInput").style["outline-color"] = color;
+  document.querySelector(".fa-circle-check").style.color = color;
+  document.querySelector("#valInput").style["outline-color"] = color;
+  elem.style["outline-color"] = color;
 }
