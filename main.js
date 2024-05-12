@@ -2,6 +2,7 @@ const exKEY = "expenses";
 const inKEY = "incomes";
 const incomeArr = initializeArrayFromLocalStorage(inKEY);
 const expensesArr = initializeArrayFromLocalStorage(exKEY);
+let inputOutlineColor = "#32a5a0";
 firstRender();
 handleDateHeader();
 document.querySelector(".fa-circle-check").addEventListener("click", () => {
@@ -198,9 +199,19 @@ function firstRender() {
 }
 
 function changeInputStyleBasedOnOperator(elem) {
-  let color = elem.value === "+" ? "#32a5a0" : "#f53237";
-  document.querySelector("#descInput").style["outline-color"] = color;
-  document.querySelector(".fa-circle-check").style.color = color;
-  document.querySelector("#valInput").style["outline-color"] = color;
-  elem.style["outline-color"] = color;
+  inputOutlineColor = elem.value === "+" ? "#32a5a0" : "#f53237";
+  document.querySelector("#descInput").style["outline-color"] = inputOutlineColor;
+  document.querySelector(".fa-circle-check").style.color = inputOutlineColor;
+  document.querySelector("#valInput").style["outline-color"] = inputOutlineColor;
+  elem.style["outline-color"] = inputOutlineColor;
+}
+
+function applyBorderStyle(opSelectElem){
+  opSelectElem.style.border = `2px solid ${inputOutlineColor}`;
+}
+
+function removerBorderStyle(opSelectElem) {
+  opSelectElem.style.border = "1px solid rgb(219, 219, 219)";
+
+  
 }

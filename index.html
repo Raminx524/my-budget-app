@@ -35,9 +35,11 @@
         <select
           id="valueOperation"
           onchange="changeInputStyleBasedOnOperator(this)"
+          onclick="applyBorderStyle(this)"
+          onblur="removerBorderStyle(this)"
         >
-          <option id="minusOpt" value="-">-</option>
-          <option value="+" id="plusOpt">+</option>
+          <option id="plusOpt" value="+">+</option>
+          <option value="-" id="minusOpt">-</option>
         </select>
         <input type="text" id="descInput" placeholder="Add Description" />
         <input type="number" id="valInput" placeholder="Value" min="1" />
