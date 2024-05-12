@@ -3,6 +3,12 @@ const inKEY = "incomes";
 const incomeArr = initializeArrayFromLocalStorage(inKEY);
 const expensesArr = initializeArrayFromLocalStorage(exKEY);
 let inputOutlineColor = "#32a5a0";
+document.querySelector("#valInput")
+    .addEventListener("keyup", (event)=> {
+    if (event.keyCode === 13) { //for enter key ascii code
+        document.querySelector(".fa-circle-check").click();
+    }
+});
 firstRender();
 handleDateHeader();
 document.querySelector(".fa-circle-check").addEventListener("click", () => {
