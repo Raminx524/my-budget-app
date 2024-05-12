@@ -3,11 +3,11 @@ const inKEY = "incomes";
 const incomeArr = initializeArrayFromLocalStorage(inKEY);
 const expensesArr = initializeArrayFromLocalStorage(exKEY);
 let inputOutlineColor = "#32a5a0";
-document.querySelector("#valInput")
-    .addEventListener("keyup", (event)=> {
-    if (event.keyCode === 13) { //for enter key ascii code
-        document.querySelector(".fa-circle-check").click();
-    }
+document.querySelector("#valInput").addEventListener("keyup", (event) => {
+  if (event.keyCode === 13) {
+    //for enter key ascii code
+    document.querySelector(".fa-circle-check").click();
+  }
 });
 firstRender();
 handleDateHeader();
@@ -25,7 +25,7 @@ document.querySelector(".fa-circle-check").addEventListener("click", () => {
       operator
     );
     const transactionsSums = calcSums();
-    createDOMHistoryItems(operator, transactionsSums[1]);
+    createDOMHistoryItems(operator, transactionsSums[0]);
     renderInfo(...transactionsSums);
   }
 });
@@ -112,7 +112,7 @@ function handleDateHeader() {
   document.querySelector("h1").innerText += ` ${monthStr} ${year}`;
 }
 
-function createDOMHistoryItems(operator, expensesSum) {
+function createDOMHistoryItems(operator, incomeSum) {
   let activeArrElems = [];
   if (operator === "+") {
     let index = 0;
@@ -138,7 +138,7 @@ function createDOMHistoryItems(operator, expensesSum) {
         itemObj.value
       )}</div>
             <span class="precentagesHistory">${Math.round(
-              (itemObj.value / expensesSum) * 100
+              (itemObj.value / incomeSum) * 100
             )}%</span>
             <i class= "fa-regular fa-circle-xmark xMark" onclick="removeItem(${index++},'expenses')"></i></div></div>`;
     });
@@ -197,8 +197,8 @@ function firstRender() {
       renderInfo(transactionsSums[0], 0);
     } else {
       const transactionsSums = calcSums();
-      createDOMHistoryItems("+", transactionsSums[1]);
-      createDOMHistoryItems("-", transactionsSums[1]);
+      createDOMHistoryItems("+", transactionsSums[0]);
+      createDOMHistoryItems("-", transactionsSums[0]);
       renderInfo(...transactionsSums);
     }
   }
@@ -206,18 +206,18 @@ function firstRender() {
 
 function changeInputStyleBasedOnOperator(elem) {
   inputOutlineColor = elem.value === "+" ? "#32a5a0" : "#f53237";
-  document.querySelector("#descInput").style["outline-color"] = inputOutlineColor;
+  document.querySelector("#descInput").style["outline-color"] =
+    inputOutlineColor;
   document.querySelector(".fa-circle-check").style.color = inputOutlineColor;
-  document.querySelector("#valInput").style["outline-color"] = inputOutlineColor;
+  document.querySelector("#valInput").style["outline-color"] =
+    inputOutlineColor;
   elem.style["outline-color"] = inputOutlineColor;
 }
 
-function applyBorderStyle(opSelectElem){
+function applyBorderStyle(opSelectElem) {
   opSelectElem.style.border = `2px solid ${inputOutlineColor}`;
 }
 
 function removerBorderStyle(opSelectElem) {
   opSelectElem.style.border = "1px solid rgb(219, 219, 219)";
-
-  
 }
