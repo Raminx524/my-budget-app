@@ -111,27 +111,25 @@ function handleDateHeader() {
   const monthStr = monthNames[month];
   document.querySelector("h1").innerText += ` ${monthStr} ${year}`;
 }
-
+//Removed ID on elem & index (לא נחוץ)
 function createDOMHistoryItems(operator, incomeSum) {
   let activeArrElems = [];
   if (operator === "+") {
-    let index = 0;
     activeArrElems = incomeArr.map((itemObj) => {
-      return `<div class="historyItem incomeHistoryItems" id="incomeItem${index}">
+      return `<div class="historyItem incomeHistoryItems">
             <p>${
               itemObj.description
             }</p><div class="historyItemValuesContainer"><div>+${formatPretty(
         itemObj.value
       )}</div>
-            <i class="fa-regular fa-circle-xmark xMark" onclick="removeItem(${index++},'income')"></i></div>
+            <i class="fa-regular fa-circle-xmark xMark" onclick="removeItem(this,'income')"></i></div>
             </div>`;
     });
     document.querySelector("#dynamicIncomesContainer").innerHTML =
       activeArrElems.join("");
   } else {
-    let index = 0;
     activeArrElems = expensesArr.map((itemObj) => {
-      return `<div class="historyItem expensesHistoryItems" id="expensesItem${index}">
+      return `<div class="historyItem expensesHistoryItems">
             <p>${
               itemObj.description
             }</p><div class="historyItemValuesContainer"><div>-${formatPretty(
@@ -140,16 +138,17 @@ function createDOMHistoryItems(operator, incomeSum) {
             <span class="precentagesHistory">${Math.round(
               (itemObj.value / incomeSum) * 100
             )}%</span>
-            <i class= "fa-regular fa-circle-xmark xMark" onclick="removeItem(${index++},'expenses')"></i></div></div>`;
+            <i class= "fa-regular fa-circle-xmark xMark" onclick="removeItem(this,'expenses')"></i></div></div>`;
     });
     document.querySelector("#dynamicExpensesContainer").innerHTML =
       activeArrElems.join("");
   }
 }
 
-function removeItem(index, idStr) {
-  document.querySelector(`#${idStr}Item${index}`).remove();
-  removeFromCorrectArray(idStr, index);
+function removeItem(btnElem, idStr) {
+  const elemIndex = getElemIndexInArray(btnElem, idStr); //New function to get the correct index of the item to remove from array
+  btnElem.parentNode.parentNode.remove(); //Get the target btn 'grandparent' and remove(same as getElemByID)
+  removeFromCorrectArray(idStr, elemIndex);
   const transactionsSums = calcSums();
   renderInfo(...transactionsSums);
 }
@@ -220,4 +219,26 @@ function applyBorderStyle(opSelectElem) {
 
 function removerBorderStyle(opSelectElem) {
   opSelectElem.style.border = "1px solid rgb(219, 219, 219)";
+}
+//Elem index in DOM array(by classname) == item index in localStorage array
+function getElemIndexInArray(btnTargetElem, idStrParam) {
+  let indexResult;
+  if (idStrParam === "income") {
+    const historyItemsElems = document.querySelectorAll(".incomeHistoryItems");
+    historyItemsElems.forEach((item, i) => {
+      if (item.children[1].children[1] === btnTargetElem) {
+        indexResult = i;
+      }
+    });
+  } else {
+    const historyItemsElems = document.querySelectorAll(
+      ".expensesHistoryItems"
+    );
+    historyItemsElems.forEach((item, i) => {
+      if (item.children[1].children[2] === btnTargetElem) {
+        indexResult = i;
+      }
+    });
+  }
+  return indexResult;
 }
