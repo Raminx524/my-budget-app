@@ -25,7 +25,7 @@ document.querySelector(".fa-circle-check").addEventListener("click", () => {
       operator
     );
     const transactionsSums = calcSums();
-    createDOMHistoryItems(operator, transactionsSums[0]);
+    createDOMHistoryItems(operator, ...transactionsSums);
     renderInfo(...transactionsSums);
   }
 });
@@ -78,6 +78,10 @@ function renderInfo(income, expenses) {
     document.querySelector("#percentages").innerText = `${Math.round(
       (expenses / income) * 100
     )}%`;
+  } else if (income === 0 && expenses !== 0) {
+    document.querySelector("#percentages").innerText = `100%`;
+  } else if (expenses === 0 && income !== 0) {
+    document.querySelector("#percentages").innerText = `0%`;
   }
 }
 
@@ -111,8 +115,8 @@ function handleDateHeader() {
   const monthStr = monthNames[month];
   document.querySelector("h1").innerText += ` ${monthStr} ${year}`;
 }
-//Removed ID on elem & index (לא נחוץ)
-function createDOMHistoryItems(operator, incomeSum) {
+
+function createDOMHistoryItems(operator, incomeSum, expensesSum) {
   let activeArrElems = [];
   if (operator === "+") {
     activeArrElems = incomeArr.map((itemObj) => {
@@ -135,9 +139,11 @@ function createDOMHistoryItems(operator, incomeSum) {
             }</p><div class="historyItemValuesContainer"><div>-${formatPretty(
         itemObj.value
       )}</div>
-            <span class="precentagesHistory">${Math.round(
-              (itemObj.value / incomeSum) * 100
-            )}%</span>
+            <span class="precentagesHistory">${
+              incomeSum != 0
+                ? Math.round((itemObj.value / incomeSum) * 100)
+                : Math.round((itemObj.value / expensesSum) * 100)
+            }%</span>
             <i class= "fa-regular fa-circle-xmark xMark" onclick="removeItem(this,'expenses')"></i></div></div>`;
     });
     document.querySelector("#dynamicExpensesContainer").innerHTML =
@@ -146,11 +152,10 @@ function createDOMHistoryItems(operator, incomeSum) {
 }
 
 function removeItem(btnElem, idStr) {
-  const elemIndex = getElemIndexInArray(btnElem, idStr); //New function to get the correct index of the item to remove from array
-  btnElem.parentNode.parentNode.remove(); //Get the target btn 'grandparent' and remove(same as getElemByID)
+  const elemIndex = getElemIndexInArray(btnElem, idStr);
+  btnElem.parentNode.parentNode.remove();
   removeFromCorrectArray(idStr, elemIndex);
-  const transactionsSums = calcSums();
-  renderInfo(...transactionsSums);
+  location.reload();
 }
 
 function removeFromCorrectArray(idStrParam, i) {
@@ -220,7 +225,7 @@ function applyBorderStyle(opSelectElem) {
 function removerBorderStyle(opSelectElem) {
   opSelectElem.style.border = "1px solid rgb(219, 219, 219)";
 }
-//Elem index in DOM array(by classname) == item index in localStorage array
+
 function getElemIndexInArray(btnTargetElem, idStrParam) {
   let indexResult;
   if (idStrParam === "income") {
